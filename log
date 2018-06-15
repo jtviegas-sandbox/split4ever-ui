@@ -1,0 +1,31 @@
+codemixTest
+
+https://www.genuitec.com/react-tutorial-getting-started/
+
+export BROWSER=none
+
+npm install --global react-scripts
+npm install
+react-scripts start
+
+setup a breakpoint in index.js
+
+Right-click on your React project and choose Debug As > Debug Configurations, and then right-click on CodeMix and select New.
+In the New CodeMix Launch Configuration dialog, select your React project’s name and then click OK.
+
+...edit .vscode/launch.json to be:
+{
+	"version": "0.2.0",
+	"configurations": [
+    	{
+        	"name": "Chrome",
+        	"type": "chrome",
+        	"request": "launch",
+        	"url": "http://localhost:3000",
+        	"webRoot": "${workspaceRoot}"
+    	}
+	]
+}
+
+Debug it now and after the window loaded, refresh it again F5
+
