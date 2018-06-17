@@ -2,3 +2,6 @@
 .settings
 .vscode
 node_modules
+build
+.tern_project
+.tern-project
