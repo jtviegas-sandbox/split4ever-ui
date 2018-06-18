@@ -1,4 +1,4 @@
-const properties = {
+const properties =  {
     config: {
         defaultItemsRetrievalCount: 20
     }

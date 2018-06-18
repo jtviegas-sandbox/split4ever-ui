@@ -1,13 +1,16 @@
 
 import React from 'react';
 import datastore from '../services/datastore';
-import ErrorBoundary from './ErrorBoundary';
 
 class App extends React.Component {
 	
 	constructor(props){
 		super(props)
-		this.store = new datastore(props);
+		
+		if(!props.properties)
+			throw '!!! no properties attribute being provided !!!';
+
+		this.store = new datastore(props.properties);
 		this.state = {
 			parts: null
 		}
@@ -27,9 +30,7 @@ class App extends React.Component {
 	
 	render(){
 		return (
-            <ErrorBoundary>
             <div className="app"></div>
-            </ErrorBoundary>
 			)
 	}
 };
