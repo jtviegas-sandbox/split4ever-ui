@@ -1,16 +1,16 @@
 
 import React from 'react';
-import datastore from '../services/datastore';
+import datastore from '../services/mock';
 
 class App extends React.Component {
 	
 	constructor(props){
 		super(props)
 		
-		if(!props.properties)
-			throw '!!! no properties attribute being provided !!!';
+		if(!props.configuration)
+			throw '!!! no configuration attribute being provided !!!';
 
-		this.store = new datastore(props.properties);
+		this.store = new datastore(props.configuration);
 		this.state = {
 			parts: null
 		}

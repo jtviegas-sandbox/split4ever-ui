@@ -5,7 +5,7 @@ class datastore {
 
 	constructor(props) {
 
-        this.defaultCount = props.config.defaultItemsRetrievalCount || 20;
+        this.defaultCount = props.pagination.n || 20;
         this.url = props.api.url;
 	}
 

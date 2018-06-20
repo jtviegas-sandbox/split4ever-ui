@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import App from './components/app';
-import properties from './properties';
+import configuration from './configuration';
 
 
-ReactDOM.render(<App properties={properties} />, document.getElementById('root'));
+ReactDOM.render(<App configuration={configuration} />, document.getElementById('root'));
