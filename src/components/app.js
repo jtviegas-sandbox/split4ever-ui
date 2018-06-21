@@ -1,6 +1,6 @@
 
 import React from 'react';
-import datastore from '../services/mock';
+import DataStoreFactory from '../services/store/DataStoreFactory';
 
 class App extends React.Component {
 	
@@ -8,9 +8,10 @@ class App extends React.Component {
 		super(props)
 		
 		if(!props.configuration)
-			throw '!!! no configuration attribute being provided !!!';
+			throw new Error('!!! no configuration attribute being provided !!!');
 
-		this.store = new datastore(props.configuration);
+		let dsf = new DataStoreFactory(props.configuration.datastore)
+		this.store = dsf.get();
 		this.state = {
 			parts: null
 		}
@@ -18,7 +19,7 @@ class App extends React.Component {
 	
 	componentWillMount() {
 		console.log('[App.componentWillMount]');
-		this.store.getParts((e,os) => {
+		this.store.getObjs((e,os) => {
 			if(e)
 				console.log('challenges getting parts', e);
 			else{

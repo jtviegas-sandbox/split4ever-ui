@@ -5,5 +5,8 @@ const configuration =  {
     , api: {
         url: "https://localhost:3001"
     }
+    , datastore: {
+        mode: 'mock'
+    }
 };
 export default configuration;
