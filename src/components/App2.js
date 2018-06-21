@@ -1,6 +1,7 @@
 
 import React from 'react';
-import DataStoreFactory from '../services/store/DataStoreFactory';
+import DataService from '../services/data/index';
+import Main from './Main';
 
 class App extends React.Component {
 	
@@ -9,17 +10,18 @@ class App extends React.Component {
 		
 		if(!props.configuration)
 			throw new Error('!!! no configuration attribute being provided !!!');
-
-		let dsf = new DataStoreFactory(props.configuration.datastore)
-		this.store = dsf.get();
+		
 		this.state = {
-			parts: null
+			parts: []
+			, configuration: props.configuration
 		}
+
+		this.dataService = new DataService(this.state.configuration);
 	}
 	
 	componentWillMount() {
-		console.log('[App.componentWillMount]');
-		this.store.getObjs((e,os) => {
+
+		this.dataService.getParts((e,os) => {
 			if(e)
 				console.log('challenges getting parts', e);
 			else{
@@ -31,7 +33,9 @@ class App extends React.Component {
 	
 	render(){
 		return (
-            <div className="app"></div>
+            <section className="app">
+				<Main state={this.state} />
+			</section>
 			)
 	}
 };

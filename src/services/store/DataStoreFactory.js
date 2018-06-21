@@ -1,10 +1,11 @@
 import MockDataStore from './mock/index.js';
+
 class DataStoreFactory {
 
 	constructor(props) {
         this.config = props;
         if(this.config.mode === 'mock'){
-        this.store = new MockDataStore(this.config)
+                this.store = new MockDataStore(this.config)
         }
 	}
 
@@ -12,7 +13,6 @@ class DataStoreFactory {
         return this.store;
 	};
 
-}
-;
+};
 
 export default DataStoreFactory;
