@@ -10,18 +10,26 @@ class SmallPartWidget extends React.Component {
 			throw new Error('!!! no state attribute being provided !!!');
 		
 		this.state = props.data;
-		this.imageSrc = "data:image/png;base64," + this.state.images[0].data
+		this.imageSrc = "data:image/" + this.state.images[0].type + ";base64," + this.state.images[0].data
+		this.link = "#/parts/" + this.state.id
 	}
 
 	
 	render(){
 		return (
-            <div class="card small-part-widget">
-				<img class="card-img-top" src={this.imageSrc} alt={this.state.images[0].name} />
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+            <div className="card small-part-widget">
+				<img className="card-img-top" src={this.imageSrc} alt={this.state.images[0].name} />
+				<div className="card-body">
+					<h5 className="card-title">{this.state.name}</h5>
+					<p className="card-text">{this.state.notes}</p>
+				</div>
+				<ul className="list-group list-group-flush text-center">
+					<li className="list-group-item"><b>category: </b>{this.state.category}</li>
+					<li className="list-group-item"><b>subcategory: </b>{this.state.subcategory}</li>
+					<li className="list-group-item">{this.state.price} €</li>
+				</ul>
+				<div className="card-footer text-right">
+					<a href={this.link} className="card-link">check it</a>
 				</div>
 			</div>
 			)

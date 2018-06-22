@@ -33,9 +33,11 @@ class App extends React.Component {
 	
 	render(){
 		return (
-            <section className="app">
+
+            <section className="container-fluid">
 				<Main state={this.state} />
 			</section>
+
 			)
 	}
 };

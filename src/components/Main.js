@@ -19,10 +19,12 @@ class Main extends React.Component {
 	
 	render(){
 		return (
-            <section className="main" >
+            <section>
+				<div className="card-columns">
 				{this.state.parts.map(
 					(part, i) => <SmallPartWidget data={part} />
 				)}
+				</div>
 			</section>
 			)
 	}

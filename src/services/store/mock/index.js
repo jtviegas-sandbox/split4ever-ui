@@ -9,7 +9,7 @@ class MockDataStore {
         this.data = store;
     }
 
-    // data file format: 'id', number', 'name', 'price', 'category', 'subcategory', 'notes' 
+    // data file format: 'id', 'name', 'price', 'category', 'subcategory', 'notes' 
     getObjIndex(type, obj){
         let r = -1
         if( obj.id ){
