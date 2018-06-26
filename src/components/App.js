@@ -2,6 +2,7 @@
 import React from 'react';
 import DataService from '../services/data/index';
 import Main from './Main';
+import Header from './Header';
 
 class App extends React.Component {
 	
@@ -35,6 +36,7 @@ class App extends React.Component {
 		return (
 
             <section className="container-fluid">
+				<Header state={this.state} />
 				<Main state={this.state} />
 			</section>
 
@@ -44,3 +46,4 @@ class App extends React.Component {
 
 
 export default App;
+//https://getbootstrap.com/docs/4.1/examples/album/#
