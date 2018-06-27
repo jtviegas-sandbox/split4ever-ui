@@ -1,8 +1,11 @@
 
 import React from 'react';
 import DataService from '../services/data/index';
+import { HashRouter, Route } from 'react-router-dom';
+
 import Main from './Main';
 import Header from './Header';
+import Footer from './Footer';
 
 class App extends React.Component {
 	
@@ -11,7 +14,7 @@ class App extends React.Component {
 		
 		if(!props.configuration)
 			throw new Error('!!! no configuration attribute being provided !!!');
-		
+
 		this.state = {
 			parts: []
 			, configuration: props.configuration
@@ -37,7 +40,12 @@ class App extends React.Component {
 
             <section className="container-fluid">
 				<Header state={this.state} />
-				<Main state={this.state} />
+				<HashRouter>
+					<section className="container-fluid">
+						<Route exact path='/' render={(props) => <Main {...props} {...this.state} />} />
+					</section>
+				</HashRouter>
+				<Footer state={this.state} />
 			</section>
 
 			)
@@ -47,3 +55,5 @@ class App extends React.Component {
 
 export default App;
 //https://getbootstrap.com/docs/4.1/examples/album/#
+
+

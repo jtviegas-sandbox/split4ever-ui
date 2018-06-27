@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 class SmallPartWidget extends React.Component {
 	
 	constructor(props){
@@ -11,7 +11,7 @@ class SmallPartWidget extends React.Component {
 		
 		this.state = props.data;
 		this.imageSrc = "data:image/" + this.state.images[0].type + ";base64," + this.state.images[0].data
-		this.link = "#/parts/" + this.state.id
+		this.link = "/parts/" + this.state.id
 	}
 
 	
@@ -29,7 +29,7 @@ class SmallPartWidget extends React.Component {
 					<li className="list-group-item">{this.state.price} €</li>
 				</ul>
 				<div className="card-footer text-right">
-					<a href={this.link} className="card-link">check it</a>
+					<NavLink to={this.link} className="card-link">check it</NavLink>
 				</div>
 			</div>
 			)

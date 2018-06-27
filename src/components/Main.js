@@ -7,10 +7,10 @@ class Main extends React.Component {
 	constructor(props){
 		super(props)
 		
-		if(!props.state)
+		if(!props)
 			throw new Error('!!! no state attribute being provided !!!');
 		
-		this.state = props.state;
+		this.state = props;
 	}
 	
 	componentWillMount() {
