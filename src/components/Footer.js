@@ -1,15 +1,19 @@
-
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Footer extends React.Component {
 	
 	constructor(props){
 		super(props)
 		
-		if(!props.state)
-			throw new Error('!!! no state attribute being provided !!!');
-		
-		this.state = props.state;
+		this.state = {
+			 selection: {
+				user: 0
+				, part: null
+			}
+			, configuration: props.configuration
+
+		}
 	}
 	
 	componentWillMount() {
@@ -17,9 +21,9 @@ class Footer extends React.Component {
 	}
 	
 	render(){
+		const { configuration, selection } = this.state;
 		return (
             <footer className="text-muted">
-			
 				<div className="container">
 				<hr className="featurette-divider" />
 					<p className="float-right">
@@ -32,5 +36,14 @@ class Footer extends React.Component {
 	}
 };
 
+
+Footer.propTypes = {
+	configuration: PropTypes.object.isRequired
+	, selection: PropTypes.object
+}
+
+Footer.defaultProps = {
+
+}
 
 export default Footer;

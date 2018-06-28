@@ -1,15 +1,17 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Header extends React.Component {
 	
 	constructor(props){
 		super(props)
-		console.log(props)
-		if(!props.state)
-			throw new Error('!!! no state attribute being provided !!!');
+/* 		if(!props.state)
+			throw new Error('!!! no state attribute being provided !!!'); */
 		
-		this.state = props.state;
+		this.state = {
+			configuration: props.configuration
+		};
 	}
 	
 	componentWillMount() {
@@ -54,5 +56,12 @@ class Header extends React.Component {
 	}
 };
 
+Header.propTypes = {
+	configuration: PropTypes.object.isRequired
+}
+
+Header.defaultProps = {
+
+}
 
 export default Header;

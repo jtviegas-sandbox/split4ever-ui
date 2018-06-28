@@ -6,7 +6,7 @@ part:[
 	    "price": "23.54",
 	    "category": "motor",
 	    "subcategory": "electricidade",
-	    "notes": "Split 54",
+	    "notes": "Split 54, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "1_0.png",
@@ -26,7 +26,7 @@ part:[
 	    "price": "34.89",
 	    "category": "motor",
 	    "subcategory": "partes",
-	    "notes": "Beetle 62",
+	    "notes": "Beetle 62, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "2_0.png",
@@ -41,7 +41,7 @@ part:[
 	    "price": "234",
 	    "category": "carrocaria",
 	    "subcategory": "partes",
-	    "notes": "Beetle 54",
+	    "notes": "Beetle 54, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "3_0.png",
@@ -56,7 +56,7 @@ part:[
 	    "price": "76",
 	    "category": "carrocaria",
 	    "subcategory": "suspensao",
-	    "notes": "Split 56",
+	    "notes": "Split 56, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "4_0.png",
@@ -71,7 +71,7 @@ part:[
 	    "price": "276",
 	    "category": "carrocaria",
 	    "subcategory": "direccao",
-	    "notes": "Beetle 49",
+	    "notes": "Beetle 49, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "5_0.png",
@@ -86,7 +86,7 @@ part:[
 	    "price": "45",
 	    "category": "carrocaria",
 	    "subcategory": "juncoes",
-	    "notes": "Beetle 71",
+	    "notes": "Beetle 71, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "6_0.png",
@@ -101,7 +101,7 @@ part:[
 	    "price": "18",
 	    "category": "chapa",
 	    "subcategory": "frente",
-	    "notes": "Beetle 66",
+	    "notes": "Beetle 66, estDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
 	    "images": [
 	      {
 	        "name": "7_0.png",
