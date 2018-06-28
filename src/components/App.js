@@ -4,6 +4,7 @@ import DataService from '../services/data/index';
 import { HashRouter, Route } from 'react-router-dom';
 
 import Main from './Main';
+import Part from './Part';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -41,8 +42,9 @@ class App extends React.Component {
             <section className="container-fluid">
 				<Header state={this.state} />
 				<HashRouter>
-					<section className="container-fluid">
+					<section className="container">
 						<Route exact path='/' render={(props) => <Main {...props} {...this.state} />} />
+						<Route path='/parts/:id' render={(props) => <Part {...props} {...this.state} />} />
 					</section>
 				</HashRouter>
 				<Footer state={this.state} />

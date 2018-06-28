@@ -22,15 +22,15 @@ body {
 	margin-top: 1rem!important;
 }
 
-.footer {
+footer {
 	margin-top: 1rem!important;
   position: relative;
 
-  border-top: 1px solid #e5e5e5;
+#  border-top: 1px solid #e5e5e5;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
+  padding: 3rem;
   text-align: center;
 }
 
@@ -38,3 +38,8 @@ body {
   width: 18rem;
 }
 
+.blog-footer {
+    padding: 2.5rem 2.5rem;
+    color: #999;
+    border-top: .5rem solid #e5e5e5;
+}
