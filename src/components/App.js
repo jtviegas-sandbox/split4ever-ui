@@ -2,6 +2,7 @@
 import React from 'react';
 import DataService from '../services/data/index';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Main from './Main';
 import Part from './Part';
@@ -13,9 +14,6 @@ class App extends React.Component {
 	constructor(props){
 		super(props)
 		
-		if(!props.configuration)
-			throw new Error('!!! no configuration attribute being provided !!!');
-
 		this.state = {
 			parts: []
 			, configuration: props.configuration
@@ -55,12 +53,11 @@ class App extends React.Component {
 	}
 };
 
-SmallPartWidget.propTypes = {
-	state: PropTypes.object.isRequired
-	, imageSrc: PropTypes.string
+App.propTypes = {
+	configuration: PropTypes.object.isRequired
 }
 
-SmallPartWidget.defaultProps = {
+App.defaultProps = {
 
 }
 

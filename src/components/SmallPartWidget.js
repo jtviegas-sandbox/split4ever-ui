@@ -4,43 +4,34 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 class SmallPartWidget extends React.Component {
 	
-	constructor(props){
-		super(props)
-		
-		this.state = props.data;
-		this.imageSrc = "data:image/" + this.state.images[0].type + ";base64," + this.state.images[0].data
-		this.link = "/parts/" + this.state.id
-	}
-
-	
 	render(){
+		
+		const { id, name, notes, category, subcategory, price, images } = this.props.data
+		const imageSrc = "data:image/" + images[0].type + ";base64," + images[0].data;
+		const link = "/parts/" + id
+		
 		return (
             <div className="card small-part-widget">
-				<img className="card-img-top" src={this.imageSrc} alt={this.state.images[0].name} />
+				<img className="card-img-top" src={imageSrc} alt={images[0].name} />
 				<div className="card-body">
-					<h5 className="card-title">{this.state.name}</h5>
-					<p className="card-text">{this.state.notes}</p>
+					<h5 className="card-title"> {name} </h5>
+					<p className="card-text">{notes}</p>
 				</div>
 				<ul className="list-group list-group-flush text-center">
-					<li className="list-group-item"><b>category: </b>{this.state.category}</li>
-					<li className="list-group-item"><b>subcategory: </b>{this.state.subcategory}</li>
-					<li className="list-group-item">{this.state.price} €</li>
+					<li className="list-group-item"><b>category: </b>{category}</li>
+					<li className="list-group-item"><b>subcategory: </b>{subcategory}</li>
+					<li className="list-group-item">{price} €</li>
 				</ul>
 				<div className="card-footer text-right">
-					<NavLink to={this.link} className="card-link">check it</NavLink>
+					<NavLink to={link} className="card-link">check it</NavLink>
 				</div>
 			</div>
 			)
 	}
-};
-
-SmallPartWidget.propTypes = {
-	state: PropTypes.object.isRequired
-	, imageSrc: PropTypes.string
 }
 
-SmallPartWidget.defaultProps = {
-
+SmallPartWidget.propTypes = {
+		data: PropTypes.object.isRequired
 }
 
 
