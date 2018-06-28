@@ -46,6 +46,7 @@ class App extends React.Component {
 						<Route exact path='/' render={(props) => <Main {...props} {...this.state} />} />
 						<Route path='/parts/:id' render={(props) => <Part {...props} {...this.state} />} />
 					</Switch>
+
 					</section>
 				<Footer state={this.state} />
 			</section>
