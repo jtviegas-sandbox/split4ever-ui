@@ -1,9 +1,10 @@
 
 import React from 'react';
 import DataService from '../services/data/index';
-import { HashRouter, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Main from './Main';
+import Part from './Part';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -40,11 +41,12 @@ class App extends React.Component {
 
             <section className="container-fluid">
 				<Header state={this.state} />
-				<HashRouter>
-					<section className="container-fluid">
+					<section className="container">
+					<Switch>
 						<Route exact path='/' render={(props) => <Main {...props} {...this.state} />} />
+						<Route path='/parts/:id' render={(props) => <Part {...props} {...this.state} />} />
+					</Switch>
 					</section>
-				</HashRouter>
 				<Footer state={this.state} />
 			</section>
 
@@ -52,8 +54,15 @@ class App extends React.Component {
 	}
 };
 
+SmallPartWidget.propTypes = {
+	state: PropTypes.object.isRequired
+	, imageSrc: PropTypes.string
+}
+
+SmallPartWidget.defaultProps = {
+
+}
 
 export default App;
-//https://getbootstrap.com/docs/4.1/examples/album/#
 
 

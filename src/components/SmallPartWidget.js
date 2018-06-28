@@ -1,13 +1,11 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 class SmallPartWidget extends React.Component {
 	
 	constructor(props){
 		super(props)
-		
-		if(!props.data)
-			throw new Error('!!! no state attribute being provided !!!');
 		
 		this.state = props.data;
 		this.imageSrc = "data:image/" + this.state.images[0].type + ";base64," + this.state.images[0].data
@@ -35,6 +33,16 @@ class SmallPartWidget extends React.Component {
 			)
 	}
 };
+
+SmallPartWidget.propTypes = {
+	state: PropTypes.object.isRequired
+	, imageSrc: PropTypes.string
+}
+
+SmallPartWidget.defaultProps = {
+
+}
+
 
 
 export default SmallPartWidget;
