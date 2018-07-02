@@ -68,6 +68,7 @@ App.propTypes = {
 	configuration: PropTypes.object.isRequired
 	, data: PropTypes.object
 	, selection: PropTypes.object
+
 }
 
 App.defaultProps = {

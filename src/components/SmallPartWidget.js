@@ -18,6 +18,7 @@ class SmallPartWidget extends React.Component {
 	render(){
 		
 		const { id, name, notes, category, subcategory, price, images } = this.state.part
+
 		const imageSrc = "data:image/" + images[0].type + ";base64," + images[0].data;
 		const link = "/parts/" + id
 		
