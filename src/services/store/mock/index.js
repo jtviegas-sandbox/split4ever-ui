@@ -5,8 +5,12 @@ class MockDataStore {
 
 
     constructor(props) {
-        this.config = props;
+    	if( !props.defaultPageSize )
+    		throw new Error('!!! no defaultPageSize configuration !!!');
+    	this.config = props;
         this.data = store;
+        
+        
     }
 
     // data file format: 'id', 'name', 'price', 'category', 'subcategory', 'notes' 
@@ -66,8 +70,44 @@ class MockDataStore {
     }
 
     getObjs(type, cb){
-        try{
-            cb(null, [...this.data[type]]);
+    	getPagedObjs(type, null, null, cb);
+    }
+    
+    getPagedObjs(type, page, n, cb){
+        try {
+        	let r = {
+        		data: []
+        		, first: null
+        		, previous: null
+        		, next: null
+        		, last: null
+        	}
+        	let _data = this.data[type];
+        	if(0 < _data.length){
+        		
+        		r.first = 0;
+        		r.last = _data.length - 1;
+        		
+        		
+        		if( !page )
+        			page = this.config.defaultPageSize
+        		if( !n )
+        			n = 1;
+        		
+        		let startIndex = ( page === 0 ? 0 : page*n );
+        		
+        		if( r.last > startIndex ){ 
+        			
+                	if ( 0 < (startIndex-page) )
+                		r.previous = startIndex-page;
+                	
+                	if( r.last >= startIndex+page )
+                		r.next = startIndex+page;
+        		}
+            		
+        	}
+        	
+            cb(null, r);
          }
         catch(error){
             cb(error);
