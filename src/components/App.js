@@ -4,16 +4,19 @@ import DataService from '../services/data/index';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+
 import Main from './Main';
 import Part from './Part';
 import Header from './Header';
 import Footer from './Footer';
+
 
 class App extends React.Component {
 	
 	constructor(props){
 		super(props)
 		
+
 		this.state = {
 			 data: {
 				parts: []
@@ -30,7 +33,7 @@ class App extends React.Component {
 	}
 	
 	componentWillMount() {
-
+		
 		this.dataService.getParts((e,os) => {
 			if(e)
 				console.log('challenges getting parts', e);
