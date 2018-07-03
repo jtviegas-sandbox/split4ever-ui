@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import ReadMore from './ReadMore';
 
 class SmallPartWidget extends React.Component {
 	
@@ -27,7 +28,9 @@ class SmallPartWidget extends React.Component {
 				<img className="card-img-top" src={imageSrc} alt={images[0].name} />
 				<div className="card-body">
 					<h5 className="card-title"> {name} </h5>
-					<p className="card-text">{notes}</p>
+					<ReadMore className="card-text" lines={1} >
+						{notes}
+					</ReadMore>
 				</div>
 				<ul className="list-group list-group-flush text-center">
 					<li className="list-group-item"><b>category: </b>{category}</li>
