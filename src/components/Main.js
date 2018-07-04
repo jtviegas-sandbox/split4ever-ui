@@ -26,6 +26,7 @@ class Main extends React.Component {
 		else {
 			this.state.selection.n = parseInt(this.state.configuration.pagination.n) - 1;
 		}
+
 		this.state.link = '/?n=' + (parseInt(this.state.selection.n) + parseInt(this.state.configuration.pagination.n))
 
 	}
