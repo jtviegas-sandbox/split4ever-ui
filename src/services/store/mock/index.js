@@ -70,41 +70,50 @@ class MockDataStore {
     }
 
     getObjs(type, cb){
-    	getPagedObjs(type, null, null, cb);
+    	this.getPagedObjs(type, null, null, cb);
     }
     
-    getPagedObjs(type, page, n, cb){
+    getPagedObjs(type, page, pagesize, cb){
         try {
         	let r = {
-        		data: []
-        		, first: null
-        		, previous: null
-        		, next: null
-        		, last: null
+        		objs: []
+        		, pages:
+        			{
+        			first: null
+        			, previous: null
+        			, next: null
+        			, last: null
+        		}
         	}
         	let _data = this.data[type];
+        	
         	if(0 < _data.length){
         		
-        		r.first = 0;
-        		r.last = _data.length - 1;
-        		
+        		if( !pagesize )
+        			pagesize = this.config.defaultPageSize
+        		console.log({len:_data.length})	
+        		r.pages.first = 0;
+        		r.pages.last = Math.floor(_data.length/pagesize);
         		
         		if( !page )
-        			page = this.config.defaultPageSize
-        		if( !n )
-        			n = 1;
+        			page = 0;
         		
-        		let startIndex = ( page === 0 ? 0 : page*n );
+        		let startIndex = page * pagesize
+        		if( startIndex >= _data.length )
+        			throw new Error("startIndex bigger than data length");
         		
-        		if( r.last > startIndex ){ 
-        			
-                	if ( 0 < (startIndex-page) )
-                		r.previous = startIndex-page;
-                	
-                	if( r.last >= startIndex+page )
-                		r.next = startIndex+page;
-        		}
-            		
+        		let endIndex = startIndex + pagesize - 1
+        		if( (startIndex + pagesize) < _data.length )
+        			r.pages.next = page + 1;
+        		else
+        			endIndex = _data.length - 1
+
+        		if( startIndex >= pagesize )
+        			r.pages.previous = page - 1;
+
+        		
+        		r.objs = _data.slice(startIndex, endIndex+1);
+	
         	}
         	
             cb(null, r);

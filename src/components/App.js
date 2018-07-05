@@ -26,37 +26,26 @@ class App extends React.Component {
 				, part: null
 			}
 			, configuration: props.configuration
+			, services: {
+				data: new DataService(props.configuration)
+			}
 
 		}
+	}
 
-		this.dataService = new DataService(this.state.configuration);
-	}
-	
-	componentWillMount() {
-		
-		this.dataService.getParts((e,os) => {
-			if(e)
-				console.log('challenges getting parts', e);
-			else{
-				console.log('got a set of parts: ', os.length)
-				let data = this.state.data;
-				data.parts = os;
-				this.setState({data});
-			}
-		});
-	}
 	
 	render(){
 
-		const { configuration, data, selection } = this.state
+		const { configuration, data, selection, services } = this.state
+		
 		return (
             <section className="container-fluid">
 				<Header selection={selection} configuration={configuration} />
 					<section className="container">
+				
 					<Switch>
-						{/* <Route exact path='/' render={(props) => <Main {...props} parts={parts} part={part} user={user} configuration={configuration} />} /> */}
-						<Route exact path='/' render={(props) => <Main {...props} data={data} configuration={configuration} selection={selection} />} />
-						<Route path='/parts/:id' render={(props) => <Part {...props} data={data} configuration={configuration} selection={selection} />} />
+						<Route exact path='/' render={(props) => <Main {...props} data={data} configuration={configuration} selection={selection} services={services} />} />
+						<Route path='/parts/:id' render={(props) => <Part {...props} data={data} configuration={configuration} selection={selection} services={services} />} />
 					</Switch>
 
 					</section>
@@ -69,6 +58,7 @@ class App extends React.Component {
 
 App.propTypes = {
 	configuration: PropTypes.object.isRequired
+	, services: PropTypes.object
 	, data: PropTypes.object
 	, selection: PropTypes.object
 

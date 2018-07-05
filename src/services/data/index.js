@@ -6,11 +6,9 @@ class DataService {
         this.store = new DataStoreFactory(config.datastore).get();
 	}
 
-	getParts(cb) {
-        return this.store.getObjs('part', cb);
+	getParts(page, pageSize, cb) {
+        return this.store.getPagedObjs('part', page, pageSize, cb);
     };
-    
-
 
 };
 
