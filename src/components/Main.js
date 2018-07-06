@@ -15,45 +15,63 @@ class Main extends React.Component {
 			, selection: props.selection
 			, configuration: props.configuration
 			, services: props.services
-			, match: props.location.search
 		}
+	}
+
+	componentWillReceiveProps(nextProps){
+		console.log('[render] query string has changed going to update');
+		this.handleUpdate(nextProps.location.search);
 	}
 
 	componentWillMount() {
-		try{console.log(this.props.location.search)}catch(e){}
+		this.handleUpdate(this.props.location.search);
 	}
-	componentDidMount() {
 
-		try{console.log(this.props.location.search)}catch(e){}
-	
+	shouldComponentUpdate(){
+		console.log('[shouldComponentUpdate|in]');
+
+		console.log('[shouldComponentUpdate|out]');
+		return true;
+	}
+
+	handleUpdate(query) {
+		console.log('[handleUpdate|in]');
 		this.state.selection.page = 0;
-		if(this.props.location.search){
-			let searchObj = queryString.parse(this.props.location.search);
+		if(query){
+			let searchObj = queryString.parse(query);
 			if(searchObj.page)
 				this.state.selection.page = parseInt(searchObj.page); 
 		}
-		
-		this.state.services.data.getParts(this.state.selection.page, this.state.configuration.pagination.n, (e,r) => {
-			if(e)
-				console.log('challenges getting parts', e);
-			else{
-				console.log('got a set of parts: ', r.objs.length)
-				let data = this.state.data;
-				data.parts = r;
-				console.log(r)
-				this.setState({data});
-			}
-		});
-		
+
+		var callback = function(ref){
+			var f = function(e,r){
+				console.log('[handleUpdate|f|in]');
+				if(e)
+					console.log('[handleUpdate|f] challenges getting parts', e);
+				else{
+					console.log('[handleUpdate|f] got a set of parts: ', r.objs.length);
+					let data = ref.state.data;
+					data.parts = r;
+					console.log(r);
+					ref.setState({data:data});
+				}
+				console.log('[handleUpdate|f|out]');
+			};
+			return {f:f};
+		}(this);
+		this.state.services.data.getParts(this.state.selection.page, this.state.configuration.pagination.n, callback.f);
+		console.log('[handleUpdate|out]');
 	}
 	
 
 	render(){
-		try{console.log(this.props.location.search)}catch(e){}
+		console.log('[render|in]');
 	
 		const { configuration, data, selection} = this.state;
 		const { first, previous, next, last } = data.parts.pages;
 		console.log(first, previous, next, last);
+		console.log(data.parts.objs);
+		console.log('[render|out]');
 		return (
             <section>
 				<div className="card-columns">

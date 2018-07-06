@@ -36,12 +36,6 @@ class App extends React.Component {
 		}
 	}
 
-	componentDidMount() {
-		try{console.log(this.props.location.search)}catch(e){}
-	}
-	componentWillMount() {
-		try{console.log(this.props.location.search)}catch(e){}
-	}
 	render(){
 
 		const { configuration, data, selection, services } = this.state

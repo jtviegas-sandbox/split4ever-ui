@@ -4,18 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 class Pagination extends React.Component {
 	
-	constructor(props){
-		super(props)
-	}
-	
-	componentDidMount() {
-		try{console.log(this.props.location.search)}catch(e){}
-	}
-	componentWillMount() {
-		try{console.log(this.props.location.search)}catch(e){}
-	}
 	render(){
-		try{console.log(this.props.location.search)}catch(e){}
 		const { first, previous , next, last } = this.props;
 		const previousLink = '/?page=' + previous;
 		const nextLink = '/?page=' + next;
