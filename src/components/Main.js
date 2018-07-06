@@ -2,8 +2,8 @@
 import React from 'react';
 import queryString from 'query-string';
 import SmallPartWidget from './SmallPartWidget';
+import Pagination from './Pagination';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 
 class Main extends React.Component {
 	
@@ -17,20 +17,22 @@ class Main extends React.Component {
 			, services: props.services
 			, match: props.location.search
 		}
+	}
 
+	componentWillMount() {
+		try{console.log(this.props.location.search)}catch(e){}
+	}
+	componentDidMount() {
+
+		try{console.log(this.props.location.search)}catch(e){}
+	
 		this.state.selection.page = 0;
-		if(props.location.search){
-			let searchObj = queryString.parse(props.location.search);
+		if(this.props.location.search){
+			let searchObj = queryString.parse(this.props.location.search);
 			if(searchObj.page)
 				this.state.selection.page = parseInt(searchObj.page); 
 		}
 		
-/*		this.state.link = '/?n=' + (parseInt(this.state.selection.n) + parseInt(this.state.configuration.pagination.n))
-		console.log(this.state)*/
-	}
-	
-	componentWillMount() {
-
 		this.state.services.data.getParts(this.state.selection.page, this.state.configuration.pagination.n, (e,r) => {
 			if(e)
 				console.log('challenges getting parts', e);
@@ -45,39 +47,19 @@ class Main extends React.Component {
 		
 	}
 	
+
 	render(){
-		const { configuration, data, selection} = this.state
-		const previousLink = '/?page=' + data.parts.pages.previous;
-		const nextLink = '/?page=' + data.parts.pages.next;
-		
-		const match = this.state.match;
-		console.log(this.state.match)
+		try{console.log(this.props.location.search)}catch(e){}
+	
+		const { configuration, data, selection} = this.state;
+		const { first, previous, next, last } = data.parts.pages;
+		console.log(first, previous, next, last);
 		return (
             <section>
 				<div className="card-columns">
-				{data.parts.objs.map(
-					(part, i) => <SmallPartWidget key={i} part={part} configuration={configuration} selection={selection} match={match} />
-				)}
+					{ data.parts.objs.map( (part, i) => <SmallPartWidget key={i} part={part} configuration={configuration} selection={selection} /> ) }
 				</div>
-
-				<nav aria-label="...">
-				  <ul className="pagination pagination-sm">
-				  <li className="page-item"><NavLink className="page-link" to={ '/?page=' + data.parts.pages.first } >first</NavLink></li>
-				  {
-					  (data.parts.pages.previous)?
-						  <li className="page-item"><NavLink className="page-link" to={ '/?page=' + data.parts.pages.previous } >previous</NavLink></li>
-						  : <li className="page-item disabled"><NavLink className="page-link" to={ '/?page=' + data.parts.pages.previous } >previous</NavLink></li>
-				  }
-				  {
-					  (data.parts.pages.next)?
-						  <li className="page-item"><NavLink className="page-link" to={ '/?page=' + data.parts.pages.next } >next</NavLink></li>
-						  : <li className="page-item disabled"><NavLink className="page-link" to={ '/?page=' + data.parts.pages.next } >next</NavLink></li>
-				  }
-				  <li className="page-item"><NavLink className="page-link" to={ '/?page=' + data.parts.pages.last } >last</NavLink></li>
-			    
-				  </ul>
-				</nav>
-
+				<Pagination first={first} previous={previous} next={next} last={last} />
 			</section>
 			)
 	}
@@ -87,7 +69,6 @@ Main.propTypes = {
 	configuration: PropTypes.object.isRequired
 	, data: PropTypes.object
 	, selection: PropTypes.object
-	, services: PropTypes.object
 }
 
 Main.defaultProps = {
