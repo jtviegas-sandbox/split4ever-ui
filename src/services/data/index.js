@@ -7,6 +7,8 @@ class DataService {
 	}
 
 	getParts(page, pageSize, cb) {
+		console.log('[DataService|getParts|in]');
+		console.log('[DataService|getParts|out]');
         return this.store.getPagedObjs('part', page, pageSize, cb);
     };
 

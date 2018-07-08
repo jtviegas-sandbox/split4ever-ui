@@ -74,6 +74,8 @@ class MockDataStore {
     }
     
     getPagedObjs(type, page, pagesize, cb){
+    	console.log('[MockDataStore|getPagedObjs|in]');
+		
         try {
         	let r = {
         		objs: []
@@ -91,7 +93,7 @@ class MockDataStore {
         		
         		if( !pagesize )
         			pagesize = this.config.defaultPageSize
-        		console.log({len:_data.length})	
+
         		r.pages.first = 0;
         		r.pages.last = Math.floor(_data.length/pagesize);
         		
@@ -121,6 +123,7 @@ class MockDataStore {
         catch(error){
             cb(error);
         }
+        console.log('[MockDataStore|getPagedObjs|out]');
     }
 
     removeObj(type, id, cb){

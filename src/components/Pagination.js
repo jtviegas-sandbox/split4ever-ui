@@ -15,7 +15,7 @@ class Pagination extends React.Component {
 				<nav aria-label="...">
 				  <ul className="pagination pagination-sm">
 				  {
-					  first ? <li className="page-item"><NavLink className="page-link" to={ firstLink } >first</NavLink></li> 
+					  null != first ? <li className="page-item"><NavLink className="page-link" to={ firstLink } >first</NavLink></li> 
 					  : <li className="page-item disabled"><NavLink className="page-link" to={ firstLink } >first</NavLink></li> 
 				  }
 				  {

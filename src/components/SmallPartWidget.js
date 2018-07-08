@@ -33,6 +33,7 @@ class SmallPartWidget extends React.Component {
 					</ReadMore>
 				</div>
 				<ul className="list-group list-group-flush text-center">
+				<li className="list-group-item"><b>id: </b>{id}</li>
 					<li className="list-group-item"><b>category: </b>{category}</li>
 					<li className="list-group-item"><b>subcategory: </b>{subcategory}</li>
 					<li className="list-group-item">{price} €</li>
