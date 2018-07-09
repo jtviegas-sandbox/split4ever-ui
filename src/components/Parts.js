@@ -35,6 +35,7 @@ class Main extends React.Component {
 		}
 		else {
 			let page = Functions.queryString2Page(this.props.location.search);
+
 			this.loadPage(page);
 		}
 		console.log('[Parts|componentWillMount|out]'); 
