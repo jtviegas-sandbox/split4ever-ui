@@ -3,10 +3,10 @@ import React from 'react';
 import DataService from '../services/data/index';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Functions from '../services/functions';
 
 
-import Main from './Main';
+
+import Parts from './Parts';
 import Part from './Part';
 import Header from './Header';
 import Footer from './Footer';
@@ -22,16 +22,17 @@ class App extends React.Component {
 				data: new DataService(props.configuration)
 			}
 		this.state = {
-			 data: {
+			 
 				parts: {
 					objs: []
 					, pages: {}
 				}
-			}
+				, page: null
+			
 		}
 
 		
-		this.pageRequest = function(ref){
+/* 		this.pageRequest = function(ref){
 			
 			var f = function(page){
 				console.log('[App|pageRequest|f|in]');
@@ -52,27 +53,34 @@ class App extends React.Component {
 				console.log('[App|pageRequest|f|out]');
 			};
 			return {f:f}
-		}(this);
+		}(this); */
 		
 		
 	}
 
-	componentWillMount(){
-		console.log('[App|componentWillMount|in]');
+	componentWillReceiveProps(nextProps){
+		console.log('[App|componentWillReceiveProps|in] nextProps:', nextProps);
+	}
+
+ 	componentWillMount(){
+		console.log('[App|componentWillMount|in]', this.props);
 		let page = 0;
-		console.log('[App|componentWillMount] this.props.location: ', this.props.location)
+/* 		console.log('[App|componentWillMount] this.props.location: ', this.props.location)
 		if(this.props.location)
 			page = Functions.queryString2Page(this.props.location.search);
 		console.log('[App|componentWillMount] going to request page: ', page)
 		this.pageRequest.f(page);
-		console.log('[App|componentWillMount|out]');
-	}
+		*/
+		console.log('[App|componentWillMount|out]'); 
+	} 
+
 	
 	render(){
 		console.log('[App|render|in]');
-		const { data } = this.state
-		const { configuration } = this.props
-		const pageRequest = this.pageRequest
+
+		const state = this.state;
+		const configuration = this.configuration;
+		const services = this.services; 
 		
 		console.log('[App|render|out]');
 		return (
@@ -80,11 +88,11 @@ class App extends React.Component {
 				<Header configuration={configuration} />
 					<section className="container">
 					<Switch>
-						<Route exact path='/' render={ (props) => <Main {...props} parts={data.parts} configuration={configuration} onPageRequest={pageRequest.f} /> } />
-						<Route path='/parts/:id' render={(props) => <Part {...props} data={data} configuration={configuration}/>} />
+						<Route exact path='/' render={ (props) => <Parts {...props} state={state} configuration={configuration} services={services} /> } />
+						<Route path='/parts/:id' render={(props) => <Part {...props} state={state} configuration={configuration}/>} />
 					</Switch>
 					</section>
-				<Footer data={data} configuration={configuration} />
+				<Footer state={state} configuration={configuration} />
 			</section>
 
 			)
