@@ -3,7 +3,7 @@ const configuration =  {
         n: 12
     }
     , api: {
-        url: "https://localhost:3001"
+        url: "https://localhost:3000"
     }
     , datastore: {
         mode: 'mock'

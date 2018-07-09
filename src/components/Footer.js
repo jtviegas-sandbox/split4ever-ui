@@ -27,7 +27,7 @@ class Footer extends React.Component {
 				<div className="container">
 				<hr className="featurette-divider" />
 					<p className="float-right">
-						<a href="#">Back to top</a>
+						<a href="/">Back to top</a>
 					</p>
 					<p>© 2018 split4ever</p>
 				</div>
