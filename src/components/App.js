@@ -39,9 +39,8 @@ class App extends React.Component {
 				<Header state={state} />
 					<section className="container">
 					<Switch>
-						<Route path='/p/:n' render={ (props) => <Parts {...props} state={state}  /> } />
+						<Route path='/' render={ (props) => <Parts {...props} state={state}  /> } />
 						<Route path='/parts/:id' render={(props) => <Part {...props} state={state}  />} />
-						<Redirect from='/' to='/p/0' /> } />
 					</Switch>
 					</section>
 				<Footer state={state} />
