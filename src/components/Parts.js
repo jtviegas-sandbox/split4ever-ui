@@ -4,6 +4,7 @@ import SmallPartWidget from './SmallPartWidget';
 import Pagination from './Pagination';
 import PropTypes from 'prop-types';
 import Functions from '../services/functions';
+import qs from 'query-string';
 
 class Parts extends React.Component {
 	
@@ -11,20 +12,27 @@ class Parts extends React.Component {
 		super(props)
 		console.log('[Parts|constructor|in] state:', props);
 		this.state = props.state;
-		this.state.page = parseInt(props.match.params.n, 10);
+		this.state.page = 0;
 	}
 
 	componentWillMount(){
 		console.log('[Parts|componentWillMount|in]', this.props);
-		let page = parseInt(this.props.match.params.n, 10);
-		this.state.page = page;
+		if(0 < this.props.location.search.length){
+			const queryParams = qs.parse(this.props.location.search);
+			if( queryParams.page )
+				this.state.page = parseInt(queryParams.page, 10);
+		}
 		this.loadPage(this.state.page);
 		console.log('[Parts|componentWillMount|out]'); 
 	}
 	
 	componentWillReceiveProps(nextProps){
 		console.log('[Parts|componentWillReceiveProps|in]', nextProps);
-		this.state.page = parseInt(nextProps.match.params.n, 10);
+		if(0 < nextProps.location.search.length){
+			const queryParams = qs.parse(nextProps.location.search);
+			if( queryParams.page )
+				this.state.page = parseInt(queryParams.page, 10);
+		}
 		this.loadPage(this.state.page);
 		console.log('[Parts|componentWillReceiveProps|out]'); 
 	} 

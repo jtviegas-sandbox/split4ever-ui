@@ -6,14 +6,14 @@ class Pagination extends React.Component {
 	
 	render(){
 		const { first, previous , next, last } = this.props;
-		const previousLink = '/p/' + previous;
-		const nextLink = '/p/' + next;
-		const firstLink = '/p/' + first;
-		const lastLink = '/p/' + last;
+		const previousLink = '/parts/?page=' + previous;
+		const nextLink = '/parts/?page=' + next;
+		const firstLink = '/parts/?page=' + first;
+		const lastLink = '/parts/?page=' + last;
 		console.log(this.props)
 		return (
 				<nav aria-label="...">
-				  <ul className="pagination pagination-sm">
+				  <ul className="pagination pagination-sm justify-content-end">
 				  {
 					  null != first ? <li className="page-item"><NavLink className="page-link" to={ firstLink } >first</NavLink></li> 
 					  : <li className="page-item disabled"><NavLink className="page-link" to={ firstLink } >first</NavLink></li> 
