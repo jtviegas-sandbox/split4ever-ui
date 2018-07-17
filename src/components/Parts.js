@@ -17,17 +17,22 @@ class Parts extends React.Component {
 
 	componentWillMount(){
 		console.log('[Parts|componentWillMount|in]', this.props);
-		console.log(this.props.location)
-		let page = parseInt(this.props.match.params.n, 10);
-		this.state.page = page;
+		if(0 < this.props.location.search.length){
+			const queryParams = qs.parse(this.props.location.search);
+			if( queryParams.page )
+				this.state.page = parseInt(queryParams.page, 10);
+		}
 		this.loadPage(this.state.page);
 		console.log('[Parts|componentWillMount|out]'); 
 	}
 	
 	componentWillReceiveProps(nextProps){
-		console.log(this.props.location)
 		console.log('[Parts|componentWillReceiveProps|in]', nextProps);
-		this.state.page = parseInt(nextProps.match.params.n, 10);
+		if(0 < nextProps.location.search.length){
+			const queryParams = qs.parse(nextProps.location.search);
+			if( queryParams.page )
+				this.state.page = parseInt(queryParams.page, 10);
+		}
 		this.loadPage(this.state.page);
 		console.log('[Parts|componentWillReceiveProps|out]'); 
 	} 
