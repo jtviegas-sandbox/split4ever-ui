@@ -6,8 +6,6 @@ class Header extends React.Component {
 	
 	constructor(props){
 		super(props)
-/* 		if(!props.state)
-			throw new Error('!!! no state attribute being provided !!!'); */
 		
 		this.state = {
 			configuration: props.configuration
@@ -44,7 +42,7 @@ class Header extends React.Component {
 					<div className="container d-flex justify-content-between">
 					<a href="" className="navbar-brand d-flex align-items-center">
 						<img src="images/header.png" className="rounded" alt="..."/>
-						<strong>Split4ever</strong>
+						<strong>split4ever</strong>
 					</a>
 					<button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 						<span className="navbar-toggler-icon"></span>
@@ -56,12 +54,13 @@ class Header extends React.Component {
 	}
 };
 
+
 Header.propTypes = {
-	configuration: PropTypes.object.isRequired
-}
+		state: PropTypes.object.isRequired
+	}
 
 Header.defaultProps = {
-
-}
+		state: {}
+	}
 
 export default Header;

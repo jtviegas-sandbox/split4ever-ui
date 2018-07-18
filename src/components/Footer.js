@@ -38,12 +38,11 @@ class Footer extends React.Component {
 
 
 Footer.propTypes = {
-	configuration: PropTypes.object.isRequired
-	, selection: PropTypes.object
-}
+		state: PropTypes.object.isRequired
+	}
 
 Footer.defaultProps = {
-
-}
+		state: {}
+	}
 
 export default Footer;
