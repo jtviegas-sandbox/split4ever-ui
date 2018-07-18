@@ -25,9 +25,11 @@ class MockDataStore {
     }
 
     getIdIndex(type, id){
+    	
         let r = -1
         if( id ){
             let s = this.data[type].filter(e => id === e.id)
+            console.log('found with id:', id, 'the obj array:', s);
             if(1 === s.length)
                 r = this.data[type].indexOf(s[0]);
         }

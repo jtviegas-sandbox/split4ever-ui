@@ -3,14 +3,13 @@ import React from 'react';
 import SmallPartWidget from './SmallPartWidget';
 import Pagination from './Pagination';
 import PropTypes from 'prop-types';
-import Functions from '../services/functions';
 import qs from 'query-string';
 
 class Parts extends React.Component {
 	
 	constructor(props){
 		super(props)
-		console.log('[Parts|constructor|in] state:', props);
+		console.log('[Parts|constructor|in] props:', props);
 		this.state = props.state;
 		this.state.page = 0;
 	}

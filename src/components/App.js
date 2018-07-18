@@ -27,6 +27,7 @@ class App extends React.Component {
 					objs: []
 					, pages: {}
 				}
+				, part: null
 		};
 	}
 	

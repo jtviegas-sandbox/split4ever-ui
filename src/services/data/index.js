@@ -11,6 +11,12 @@ class DataService {
 		console.log('[DataService|getParts|out]');
         return this.store.getPagedObjs('part', page, pageSize, cb);
     };
+    
+    getPart(id, cb) {
+		console.log('[DataService|getPart|in] id:', id);
+		console.log('[DataService|getPart|out]');
+        return this.store.getObj('part', id, cb);
+    };
 
 };
 
