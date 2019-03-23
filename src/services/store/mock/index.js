@@ -9,11 +9,10 @@ class MockDataStore {
     		throw new Error('!!! no defaultPageSize configuration !!!');
     	this.config = props;
         this.data = store;
-        
-        
+
     }
 
-    // data file format: 'id', 'name', 'price', 'category', 'subcategory', 'notes' 
+    // data file format: 'id', 'number', 'name', 'price', 'family', 'category', 'subcategory', 'notes'
     getObjIndex(type, obj){
         let r = -1
         if( obj.id ){
@@ -58,7 +57,7 @@ class MockDataStore {
         
     }
 
-    getObj(type, id, cb){
+    getObj(stage, type, id, cb){
         try{
             let r = null;
             let idx = this.getIdIndex(type, id);
@@ -75,55 +74,78 @@ class MockDataStore {
     	this.getPagedObjs(type, null, null, cb);
     }
     
-    getPagedObjs(type, page, pagesize, cb){
+    getPagedObjs(stage, type, fromKey, pageSize, callback){
     	console.log('[MockDataStore|getPagedObjs|in]');
 		
         try {
         	let r = {
-        		objs: []
-        		, pages:
-        			{
-        			first: null
-        			, previous: null
-        			, next: null
-        			, last: null
-        		}
+        		data: []
+        		, first: null
+                , previous: null
+                , next: null
+                , last: null
+                , idx: {
+        		    current: 0
+                    , first: 0
+                    , previous: null
+                    , next: null
+                    , last: null
+                }
         	}
         	let _data = this.data[type];
         	
-        	if(0 < _data.length){
-        		
-        		if( !pagesize )
-        			pagesize = this.config.defaultPageSize
+        	if(0 < _data.length) {
 
-        		r.pages.first = 0;
-        		r.pages.last = Math.floor(_data.length/pagesize);
-        		
-        		if( !page )
-        			page = 0;
-        		
-        		let startIndex = page * pagesize
-        		if( startIndex >= _data.length )
-        			throw new Error("startIndex bigger than data length");
-        		
-        		let endIndex = startIndex + pagesize - 1
-        		if( (startIndex + pagesize) < _data.length )
-        			r.pages.next = page + 1;
-        		else
-        			endIndex = _data.length - 1
+                r.idx.last = _data.length - 1;
+                console.log('[MockDataStore|getPagedObjs] last index:', r.idx.last);
 
-        		if( startIndex >= pagesize )
-        			r.pages.previous = page - 1;
+                if (!pageSize)
+                    pageSize = this.config.defaultPageSize;
 
-        		
-        		r.objs = _data.slice(startIndex, endIndex+1);
-	
+                if (fromKey) {
+                    r.idx.current = _data.findIndex(o => o.id === fromKey);
+                    if (-1 === r.idx.current)
+                        throw new Error("could not find data by lastKey");
+                    r.idx.current++;
+                }
+
+                let n = _data.length;
+                let pages = Math.ceil(n / pageSize);
+                let page = Math.floor(r.idx.current/pageSize)
+
+                if(1 < page)
+                    r.idx.previous = (page-1)*pageSize;
+                if( page < (pages-2) )
+                    r.idx.next = (page+1)*pageSize;
+
+                r.idx.last = (pages-1)*pageSize;
+
+                if (r.idx.next) {
+                    console.log('[MockDataStore|getPagedObjs] slicing', r.idx.current, r.idx.next);
+                    r.data = _data.slice(r.idx.current, r.idx.next);
+                } else {
+                    if( page < (pages-1)){
+                        console.log('[MockDataStore|getPagedObjs] slicing', r.idx.current, r.idx.current+pageSize);
+                        r.data = _data.slice(r.idx.current, r.idx.current+pageSize);
+                    }
+                    else{
+                        console.log('[MockDataStore|getPagedObjs] slicing', r.idx.current);
+                        r.data = _data.slice(r.idx.current);
+                    }
+                }
+
+                r.previous = (null === r.idx.previous) ? null : _data[r.idx.previous-1].id;
+                r.next = (null === r.idx.next) ? null : _data[r.idx.next-1].id;
+                r.last = (0 < r.idx.last) ? _data[r.idx.last-1].id : null ;
+
+                console.log('[MockDataStore|getPagedObjs] pointers', r.idx.first,r.idx.previous,r.idx.current, r.idx.next, r.idx.last);
+
         	}
         	
-            cb(null, r);
+            callback(null, r);
          }
         catch(error){
-            cb(error);
+            callback(error);
         }
         console.log('[MockDataStore|getPagedObjs|out]');
     }

@@ -1,63 +1,26 @@
 
 import React from 'react';
-import DataService from '../services/data/index';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-
-
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Parts from './Parts';
 import Part from './Part';
 import Header from './Header';
 import Footer from './Footer';
 
-
-class App extends React.Component {
-	
-	constructor(props){
-		super(props)
-		this.state = {
-				context: {
-					services: {
-						data: new DataService(props.configuration)
-					}
-					, configuration: props.configuration
-				}
-				,parts: {
-					objs: []
-					, pages: {}
-				}
-				, part: null
-		};
-	}
-	
-	render(){
-		console.log('[App|render|in]', this.state);
-		const state = this.state;
-		console.log('[App|render|out]');
-		return (
-            <section className="container-fluid">
-				<Header state={state} />
-					<section className="container">
-					<Switch>
-						<Route path='/parts/:id' render={(props) => <Part {...props} state={state}  />} />	
-						<Route path='/parts' render={ (props) => <Parts {...props} state={state}  /> } />
-						<Redirect from='/' to='/parts' /> } />
-					</Switch>
-					</section>
-				<Footer state={state} />
+const App = () =>
+	<HashRouter>
+		<section className="container-fluid">
+			<Header />
+			<section className="container">
+				<Switch>
+					<Route path="/parts/:id" component={Part} />
+					<Route path="/parts" component={Parts} />
+					<Redirect from="/" to="/parts" /> } />
+				</Switch>
 			</section>
-
-			)
-	}
-};
-
-App.propTypes = {
-	configuration: PropTypes.object.isRequired
-}
-
-App.defaultProps = {
-}
+			<Footer />
+		</section>
+	</HashRouter>
 
 export default App;
 
