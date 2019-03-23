@@ -6,16 +6,16 @@ class DataService {
         this.store = new DataStoreFactory(config.datastore).get();
 	}
 
-	getParts(page, pageSize, cb) {
-		console.log('[DataService|getParts|in]');
+	getParts(mode, lastKey, pageSize, cb) {
+		console.log('[DataService|getParts|in](', mode, ',', lastKey,',', pageSize,')');
 		console.log('[DataService|getParts|out]');
-        return this.store.getPagedObjs('part', page, pageSize, cb);
+        return this.store.getPagedObjs(mode, 'parts', lastKey, pageSize, cb);
     };
     
-    getPart(id, cb) {
-		console.log('[DataService|getPart|in] id:', id);
+    getPart(mode, key, cb) {
+		console.log('[DataService|getPart|in] (', mode, ',', key, ')');
 		console.log('[DataService|getPart|out]');
-        return this.store.getObj('part', id, cb);
+        return this.store.getObj(mode, 'parts', key, cb);
     };
 
 };
