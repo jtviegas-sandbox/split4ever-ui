@@ -3,19 +3,19 @@ import DataStoreFactory from '../store/DataStoreFactory';
 class DataService {
 
 	constructor(config) {
-        this.store = new DataStoreFactory(config.datastore).get();
+        this.store = new DataStoreFactory(config.dataStore).get();
 	}
-
-	getParts(mode, lastKey, pageSize, cb) {
-		console.log('[DataService|getParts|in](', mode, ',', lastKey,',', pageSize,')');
+	getParts(stage, fromKey, pageSize, callback) {
+		console.log('[DataService|getParts|in](', stage, ',', fromKey,',', pageSize,')');
 		console.log('[DataService|getParts|out]');
-        return this.store.getPagedObjs(mode, 'parts', lastKey, pageSize, cb);
+        return this.store.getPagedObjs(stage, 'parts', fromKey, pageSize, callback);
     };
     
-    getPart(mode, key, cb) {
-		console.log('[DataService|getPart|in] (', mode, ',', key, ')');
+    getPart(stage, key, callback) {
+		console.log('[DataService|getPart|in] (', stage, ',', key, ')');
 		console.log('[DataService|getPart|out]');
-        return this.store.getObj(mode, 'parts', key, cb);
+        return this.store.getObj(stage, 'parts', key, callback);
+
     };
 
 };
